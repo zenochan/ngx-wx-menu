@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "wx-menu": [
+        "dist/wx-menu"
+      ],
+      "wx-menu/*": [
+        "dist/wx-menu/*"
+      ]
+    }
   }
 }

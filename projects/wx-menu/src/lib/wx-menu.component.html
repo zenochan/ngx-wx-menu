@@ -1,0 +1,111 @@
+<div class="container">
+  <!-- 自定义菜单 -->
+  <!--  <h3>自定义菜单</h3>-->
+
+  <div class="custom-menu-edit-con">
+    <div class="hbox">
+      <div class="inner-left">
+        <div class="custom-menu-view-con">
+          <div class="custom-menu-view">
+            <div class="custom-menu-view__title" [innerText]="name"></div>
+            <div class="custom-menu-view__body">
+              <div class="weixin-msg-list">
+                <ul class="msg-con"></ul>
+              </div>
+            </div>
+            <div id="menuMain" class="custom-menu-view__footer">
+              <div class="custom-menu-view__footer__left"></div>
+              <div class="custom-menu-view__footer__right">
+                <div class="custom-menu-view__menu" [class.subbutton__actived]="active == button"
+                     *ngFor="let button of menu?.button">
+                  <div class="text-ellipsis" (click)="active = button" [innerText]="button.name"></div>
+
+
+                  <ul class="custom-menu-view__menu__sub">
+
+                    <li class="custom-menu-view__menu__sub__add"
+                        *ngFor="let sub of button.sub_button"
+                        [class.subbutton__actived]="active == sub"
+                        (click)="active = sub"
+                    >
+                      <div class="text-ellipsis">{{sub.name}}</div>
+                    </li>
+
+                    <li class="custom-menu-view__menu__sub__add" *ngIf="button.sub_button?.length<5"
+                        (click)="addSubButton(button)">
+                      <div class="text-ellipsis text-info">添加</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="custom-menu-view__menu" *ngIf="menu?.button?.length<3">
+                  <div class="text-ellipsis text-info" (click)="addButton()"> 添加</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="inner-right">
+        <div class="cm-edit-after" *ngIf="active">
+          <div class="cm-edit-right-header b-b" style="display: flex">
+            <span id="cm-tit">{{active.name}}</span>
+            <div style="flex: 1"></div>
+            <a class="pull-right" (click)="deleteMenu()">删除菜单</a>
+          </div>
+
+          <form class="form-horizontal wrapper-md" name="custom_form">
+            <div class="form-group">
+              <label class="control-label">菜单名称</label>
+              <input class="form-control"
+                     placeholder="输入菜单名称" maxlength="5" type="text"
+                     [(ngModel)]="active.name" name="name"
+              >
+              <div class="help-block">
+                <div
+                    ng-show="custom_form.custom_input_title.$dirty&&custom_form.custom_input_title.$invalid-maxlength">
+                  字数不超过5个汉字或16个字符
+                </div>
+                <div class="font_sml">若无二级菜单，可输入20个汉字或60个字符</div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px">
+              <div class="col-sm-2 control-label">菜单排序</div>
+              <div class="menu-move">
+                <button [disabled]="!canMove(active,'left')" (click)="move(active,'left')">←</button>
+                <button [disabled]="!canMove(active,'up')" (click)="move(active,'up')">↑</button>
+                <button [disabled]="!canMove(active,'down')" (click)="move(active,'down')">↓️</button>
+                <button [disabled]="!canMove(active,'right')" (click)="move(active,'right')">→</button>
+              </div>
+            </div>
+
+          </form>
+
+          <div class="cm-edit-content-con" id="editPage" *ngIf="active.type == 'view'">
+            <div class="cm-edit-page">
+              <label class="ccontrol-label" style="text-align: left;">粉丝点击该菜单会跳转到以下链接:
+              </label>
+              <div>
+                  <textarea type="text" name="url" class="form-control" placeholder="认证号才可手动输入地址"
+                            [(ngModel)]="active.url"
+                  ></textarea>
+                <span class="help-block">必填,必须是正确的URL格式</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div *ngIf="!active" class="cm-edit-before"><h5>点击左侧菜单进行操作</h5></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cm-edit-footer" *ngIf="!_hideSubmit">
+    <button type="button" class="btn btn-info1" (click)="onSubmit.emit()">保存</button>
+  </div>
+
+</div>

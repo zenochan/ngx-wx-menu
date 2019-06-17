@@ -1,0 +1,13 @@
+{
+  "name": "@zenochan/ngx-wx-menu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/zenochan/ngx-wx-menu",
+  "author": {
+    "name": "Zeno Chan",
+    "email": "zenochan@qq.com"
+  },
+  "peerDependencies": {
+    "@angular/common": "^8.0.1",
+    "@angular/core": "^8.0.1"
+  }
+}

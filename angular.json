@@ -119,6 +119,41 @@
           }
         }
       }
+    },
+    "wx-menu": {
+      "projectType": "library",
+      "root": "projects/wx-menu",
+      "sourceRoot": "projects/wx-menu/src",
+      "prefix": "z",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/wx-menu/tsconfig.lib.json",
+            "project": "projects/wx-menu/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wx-menu/src/test.ts",
+            "tsConfig": "projects/wx-menu/tsconfig.spec.json",
+            "karmaConfig": "projects/wx-menu/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/wx-menu/tsconfig.lib.json",
+              "projects/wx-menu/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "wx-menu-lib"
 }
