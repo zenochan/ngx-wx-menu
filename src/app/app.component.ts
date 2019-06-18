@@ -14,19 +14,19 @@ export class AppComponent
     button: [
       {
         'name': 'MORMA',
-        'sub_button': [],
+        'subButton': [],
         'type': 'view',
         'url': 'http://morma.cn'
       },
       {
         'name': '授权',
-        'sub_button': [],
+        'subButton': [],
         'type': 'view',
         'url': 'http://wxopen.morma.cn/auth'
       },
       {
         'name': 'Coding',
-        'sub_button': [],
+        'subButton': [],
         'type': 'view',
         'url': 'http://wxc07fd4f3157d0406.wxopen.morma.cn'
       }

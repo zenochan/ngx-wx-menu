@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class MenuButton
 {
   name: string;
-  sub_button?: MenuButton[] = [];
+  subButton?: MenuButton[] = [];
   type: string;
   /** type== 'view' */
   url?: string;
@@ -64,8 +64,8 @@ export class WxMenuComponent implements OnInit
 
   addSubButton(button: MenuButton)
   {
-    button.sub_button = button.sub_button || [];
-    if (button.sub_button.length != 0 || confirm('添加子菜单后，一级菜单的内容将被清除。确定添加子菜单？')) {
+    button.subButton = button.subButton || [];
+    if (button.subButton.length != 0 || confirm('添加子菜单后，一级菜单的内容将被清除。确定添加子菜单？')) {
 
       let sub = {
         name: '新建子菜单',
@@ -73,7 +73,7 @@ export class WxMenuComponent implements OnInit
       };
 
       button.type = null;
-      button.sub_button.push(sub);
+      button.subButton.push(sub);
       this.active = sub;
     }
   }
@@ -85,10 +85,10 @@ export class WxMenuComponent implements OnInit
       this.menu.button.splice(index, 1);
     } else {
       this.menu.button.forEach(menu => {
-        let index = menu.sub_button.indexOf(this.active);
+        let index = menu.subButton.indexOf(this.active);
         if (index != -1) {
-          menu.sub_button.splice(index, 1);
-          if (menu.sub_button.length == 0) {
+          menu.subButton.splice(index, 1);
+          if (menu.subButton.length == 0) {
             menu.type = 'view';
           }
         }
@@ -115,18 +115,18 @@ export class WxMenuComponent implements OnInit
     let index = this.menu.button.indexOf(menuButton);
     if (index == -1) {
       this.menu.button.forEach(button => {
-        if (button.sub_button.indexOf(menuButton) != -1) {
+        if (button.subButton.indexOf(menuButton) != -1) {
           parent = button;
-          index = button.sub_button.indexOf(menuButton);
+          index = button.subButton.indexOf(menuButton);
         }
       });
     }
 
     switch (direction) {
       case 'up':
-        return parent && parent.sub_button.length > 1 && index != 0;
+        return parent && parent.subButton.length > 1 && index != 0;
       case 'down':
-        return parent && parent.sub_button.length > index + 1;
+        return parent && parent.subButton.length > index + 1;
       case 'left':
         return !parent && index > 0 && this.menu.button.length > 1;
       case 'right':
@@ -142,9 +142,9 @@ export class WxMenuComponent implements OnInit
     let index = this.menu.button.indexOf(menuButton);
     if (index == -1) {
       this.menu.button.forEach(button => {
-        if (button.sub_button.indexOf(menuButton) != -1) {
+        if (button.subButton.indexOf(menuButton) != -1) {
           parent = button;
-          index = button.sub_button.indexOf(menuButton);
+          index = button.subButton.indexOf(menuButton);
         }
       });
     }
@@ -153,12 +153,12 @@ export class WxMenuComponent implements OnInit
 
     switch (direction) {
       case 'up':
-        btn = parent.sub_button.splice(index, 1);
-        parent.sub_button.splice(index - 1, 0, ...btn);
+        btn = parent.subButton.splice(index, 1);
+        parent.subButton.splice(index - 1, 0, ...btn);
         break;
       case 'down':
-        btn = parent.sub_button.splice(index, 1);
-        parent.sub_button.splice(index + 1, 0, ...btn);
+        btn = parent.subButton.splice(index, 1);
+        parent.subButton.splice(index + 1, 0, ...btn);
         break;
       case 'left':
         btn = this.menu.button.splice(index, 1);

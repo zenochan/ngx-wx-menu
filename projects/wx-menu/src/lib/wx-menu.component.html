@@ -24,14 +24,14 @@
                   <ul class="custom-menu-view__menu__sub">
 
                     <li class="custom-menu-view__menu__sub__add"
-                        *ngFor="let sub of button.sub_button"
+                        *ngFor="let sub of button.subButton"
                         [class.subbutton__actived]="active == sub"
                         (click)="active = sub"
                     >
                       <div class="text-ellipsis">{{sub.name}}</div>
                     </li>
 
-                    <li class="custom-menu-view__menu__sub__add" *ngIf="button.sub_button?.length<5"
+                    <li class="custom-menu-view__menu__sub__add" *ngIf="button.subButton?.length<5"
                         (click)="addSubButton(button)">
                       <div class="text-ellipsis text-info">添加</div>
                     </li>
