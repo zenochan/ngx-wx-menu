@@ -3,6 +3,8 @@
 > @since  2019/06/17  
 > @author Zeno Chan (zenochan@qq.com)
 
+[demo](https://zenochan.github.io/ngx-wx-menu/)
+
 #### USAGE
 
 `npm i @zenochan/ngx-wx-menu`
